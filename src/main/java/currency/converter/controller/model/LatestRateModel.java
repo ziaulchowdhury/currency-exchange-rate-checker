@@ -9,18 +9,19 @@ import org.hibernate.validator.constraints.NotBlank;
  * Model used for showing latest exchange rates.
  * 
  * @author Ziaul Chowdhury (ziaul.chowdhury@tu-dortmund.de)
- * @since  06.03.2016
+ * @since 06.03.2016
  */
 public class LatestRateModel {
 
-	@Min(value=1)
+	@Min(value = 1)
 	protected double amount;
-	
+
 	@NotBlank
-	@Size(min=1)
+	@Size(min = 1)
 	protected String baseCurrency;
-	
-	public LatestRateModel() {}
+
+	public LatestRateModel() {
+	}
 
 	public double getAmount() {
 		return amount;

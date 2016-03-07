@@ -20,7 +20,7 @@ import currency.converter.login.UserService;
  * Controller for users with ADMIN role.
  * 
  * @author Ziaul Chowdhury (ziaul.chowdhury@tu-dortmund.de)
- * @since  06.03.2016
+ * @since 06.03.2016
  */
 @Controller
 @RequestMapping("/admin")
@@ -28,18 +28,18 @@ public class AdminController {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private UserAuthorityRepository userAuthorityRespository;
-	
+
 	@Autowired
 	private CurrencyRespository currencyRepository;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-	
+
 	/**
 	 * Displays all persisted users, authorities and currencies.
 	 * 
@@ -47,23 +47,23 @@ public class AdminController {
 	 * @return showUsers view
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-    public String showUsers(Model model) {
-		
+	public String showUsers(Model model) {
+
 		logger.info("Admin page is accessed by : " + userService.getLoggedInUserName());
-		
-		if(!userService.hasAdminRole()) {
+
+		if (!userService.hasAdminRole()) {
 			return "redirect:userhome";
 		}
-		
+
 		Iterable<User> users = userRepository.findAll();
 		model.addAttribute("users", users);
-		
+
 		Iterable<Currency> currencies = currencyRepository.findAll();
 		model.addAttribute("currencies", currencies);
-		
+
 		Iterable<UserAuthority> authorities = userAuthorityRespository.findAll();
 		model.addAttribute("authorities", authorities);
-		
-        return "showUsers";
-    }
+
+		return "showUsers";
+	}
 }

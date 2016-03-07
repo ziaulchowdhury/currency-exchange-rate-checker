@@ -9,14 +9,14 @@ import currency.converter.entity.CurrencyRate;
  * Model used for showing exchange histories of the user.
  * 
  * @author Ziaul Chowdhury (ziaul.chowdhury@tu-dortmund.de)
- * @since  06.03.2016
+ * @since 06.03.2016
  */
 public class ExchangeHistoryModel {
 
 	private CurrencyHistory history;
-	
+
 	private List<CurrencyRate> historyRates;
-	
+
 	public ExchangeHistoryModel(CurrencyHistory history, List<CurrencyRate> historyRates) {
 		this.history = history;
 		this.historyRates = historyRates;
