@@ -1,76 +1,82 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-	
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta charset="utf-8" />
     <title>Currency Exchange Rate Checker : Login</title>
-	
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-	<style type="text/css">
-		body {
-		  padding-top: 50px;
-		  padding-bottom: 20px;
-		}
-	</style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <style type="text/css">
+        body {
+	       padding-top: 50px;
+	       padding-bottom: 20px;
+        }
+    </style>
 </head>
 
 <body>
-	
+
 	<!-- Top navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            		<span class="sr-only">Toggle navigation</span>
-            		<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-          		</button>
-          		
-          		<a class="navbar-brand" th:href="@{/login}" sec:authorize="!isAuthenticated()">Currency Exchange Rate Checker</a>
-          		<a class="navbar-brand" th:href="@{/userhome}" sec:authorize="isAuthenticated()">Currency Exchange Rate Checker</a>
-        	</div>
-		
-        	<div id="navbar" class="navbar-collapse collapse">
-				
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+				<a class="navbar-brand" th:href="@{/login}" sec:authorize="!isAuthenticated()">Currency Exchange Rate Checker</a>
+				<a class="navbar-brand" th:href="@{/userhome}" sec:authorize="isAuthenticated()">Currency Exchange Rate Checker</a>
+			</div>
+
+			<div id="navbar" class="navbar-collapse collapse">
+
 				<!-- When authenticated, show links for navigation -->
 				<ul class="nav navbar-nav navbar-right" sec:authorize="isAuthenticated()">
 					<li>
-						<a href="#" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</a>
+					   <a href="#" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</a>
 					</li>
 					<li sec:authorize="hasRole('ROLE_ADMIN')">
-						<a th:href="@{/admin}" th:inline="text">Admin</a>
-					</li>
+					   <a th:href="@{/admin}" th:inline="text">Admin</a>
+                    </li>
 					<li>
-						<form th:action="@{/logout}" method="post" class="form-horizontal" role="form" style="padding-top:11px;">
+						<form th:action="@{/logout}" method="post" class="form-horizontal" role="form" style="padding-top: 11px;">
 							<input type="submit" value="Logout" class="btn btn-default btn-sm" />
 						</form>
 					</li>
 				</ul>
-				
+
 				<!-- Registration link for unauthenticated users -->
 				<div sec:authorize="!isAuthenticated()">
 					<a href="/register" class="btn btn-success navbar-right" style="margin-top: 10px;">Register</a>
 				</div>
-				
-        	</div>
-        	
-      	</div>
-    </nav>
+
+			</div>
+
+		</div>
+	</nav>
 
 	<!-- Content -->
 	<div class="jumbotron">
 		<div class="container">
-        	<p><strong>Currency Exchange Rate Checker</strong> is a simple system to check current and historical currency 
-        		exchange rates. The exchange rates are retrieved from Openexchange sytem.</p>
-      	</div>
-    </div>
+			<p>
+				<strong>Currency Exchange Rate Checker</strong> is a simple system to check current and historical 
+				currency exchange rates. The exchange rates are retrieved from Openexchange sytem.
+			</p>
+		</div>
+	</div>
 
 	<div class="container">
 		<div class="container-fluid vcenter">
 			<div class="row">
-	
+
 				<div class="col-sm-4 col-sm-offset-0">
 					<h3>Why Currency Exchange Rate Checker:</h3>
 					<ul>
@@ -79,32 +85,32 @@
 						<li>To store search histories</li>
 					</ul>
 				</div>
-	
+
 				<div class="col-sm-8">
 					<div class="panel panel-default" sec:authorize="!isAuthenticated()">
-						
-						<div class="panel-heading" >
+
+						<div class="panel-heading">
 							<strong class="">Login</strong>
 						</div>
-						
+
 						<div class="panel-body">
-							
+
 							<form th:action="@{/login}" method="post" class="form-horizontal" role="form">
-							
+
 								<div class="form-group">
 									<label for="login" class="col-sm-3 control-label">Username</label>
 									<div class="col-sm-9">
 										<input class="form-control" type="text" name="username" placeholder="Username" required="" />
 									</div>
 								</div>
-								
+
 								<div class="form-group">
 									<label for="inputPassword3" class="col-sm-3 control-label">Password</label>
 									<div class="col-sm-9">
 										<input class="form-control" name="password" placeholder="Password" required="" type="password" />
 									</div>
 								</div>
-		
+
 								<div class="form-group last">
 									<div class="col-sm-offset-3 col-sm-9">
 										<input name="submit" type="submit" value="Login" class="btn btn-primary btn-sm" />
@@ -113,21 +119,21 @@
 								</div>
 							</form>
 						</div>
-						
+
 						<div th:if="${param.error}" class="alert alert-success" role="alert">Invalid username and/or password.</div>
-				        <div th:if="${param.logout}" class="alert alert-success" role="alert">You have been logged out.</div>
+						<div th:if="${param.logout}" class="alert alert-success" role="alert">You have been logged out.</div>
 					</div>
-					
+
 					<div class="alert alert-success" role="alert" sec:authorize="isAuthenticated()">
-						You are already logged into the system!<br/>
+						You are already logged into the system!<br />
 					</div>
-					
+
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
-	
+
 	<!-- Footer -->
 	<div class="jumbotron">
 		<div class="container">
@@ -137,8 +143,7 @@
 		</div>
 	</div>
 
-	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 </body>
 </html>
