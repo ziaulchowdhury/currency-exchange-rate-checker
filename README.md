@@ -4,7 +4,7 @@ Currency Exchange Rate Checker is a simple system which allows new users to make
 It offers two types of exchange rate query:
 1. Latest exchange rates
 2. Historical exchange rates
-2.1. Historical exchange rate is based on the date
+  1. Historical exchange rate is based on the date
 
 ## Source of Data 
 Currency exchange rates are retrieved from [openexchangerates](https://openexchangerates.org).
