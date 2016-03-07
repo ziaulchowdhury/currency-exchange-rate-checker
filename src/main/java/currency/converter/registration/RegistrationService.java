@@ -13,17 +13,17 @@ import currency.converter.entity.repository.UserRepository;
  * Service for creating user.
  * 
  * @author Ziaul Chowdhury (ziaul.chowdhury@tu-dortmund.de)
- * @since  06.03.2016
+ * @since 06.03.2016
  */
 @Component
 public class RegistrationService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private UserAuthorityRepository userAuthorityRespository;
-	
+
 	/**
 	 * Creates a new user when username does not exist in the system.
 	 * 
@@ -31,21 +31,22 @@ public class RegistrationService {
 	 * 
 	 * @return Saved {@link User}
 	 * 
-	 * @throws UserExistException when username exists
+	 * @throws UserExistException
+	 *             when username exists
 	 */
 	public User createUser(User user) throws UserExistException {
-		
-		// check if user exists 
-		if(userRepository.findOne(user.getUsername()) != null) {
+
+		// check if user exists
+		if (userRepository.findOne(user.getUsername()) != null) {
 			throw new UserExistException(user.getUsername() + " exists in the system. Please choose another username!");
 		}
-		
+
 		// Create the user
 		user.setEnable(true);
 		User savedUser = userRepository.save(user);
-		
+
 		userAuthorityRespository.save(new UserAuthority(savedUser.getUsername(), UserRole.ROLE_USER.name()));
-		
+
 		return savedUser;
 	}
 }

@@ -7,27 +7,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * JSON model for unmashalling currency rates.
  * 
  * @author Ziaul Chowdhury (ziaul.chowdhury@tu-dortmund.de)
- * @since  06.03.2016
+ * @since 06.03.2016
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CurrencyRateModel {
 
 	@JsonProperty("disclaimer")
 	private String disclaimer;
-	
+
 	@JsonProperty("license")
 	private String license;
-	
+
 	@JsonProperty("timestamp")
 	private long timeStamp;
-	
+
 	@JsonProperty("base")
 	private String base;
-	
+
 	@JsonProperty("rates")
 	private Rates rates;
-	
-	public CurrencyRateModel() { }
+
+	public CurrencyRateModel() {
+	}
 
 	public String getDisclaimer() {
 		return disclaimer;

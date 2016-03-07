@@ -7,33 +7,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * JSON model for unmashalling rates.
  * 
  * @author Ziaul Chowdhury (ziaul.chowdhury@tu-dortmund.de)
- * @since  06.03.2016
+ * @since 06.03.2016
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Rates {
 
 	@JsonProperty("AUD")
-	private double aud; 	// Australian Dollar
-	
+	private double aud; // Australian Dollar
+
 	@JsonProperty("EUR")
-	private double eur; 	// Euro
+	private double eur; // Euro
 
 	@JsonProperty("GBP")
-	private double gbp;  	// British Pound Sterling
-	
+	private double gbp; // British Pound Sterling
+
 	@JsonProperty("HUF")
-	private double huf; 	// Hungarian Forint
-	
+	private double huf; // Hungarian Forint
+
 	@JsonProperty("JPY")
-	private double jpy; 	// Japanese Yen
-	
+	private double jpy; // Japanese Yen
+
 	@JsonProperty("NZD")
-	private double nzd;		// New Zealand Dollar
-	
+	private double nzd; // New Zealand Dollar
+
 	@JsonProperty("USD")
-	private double usd;		// United States Dollar
-	
-	public Rates() { }
+	private double usd; // United States Dollar
+
+	public Rates() {
+	}
 
 	public double getAud() {
 		return aud;

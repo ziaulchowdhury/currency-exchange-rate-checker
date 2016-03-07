@@ -10,15 +10,15 @@ import currency.converter.entity.Currency;
  * CurrencyRespository with CRUD operations on Currency entity
  * 
  * @author Ziaul Chowdhury (ziaul.chowdhury@tu-dortmund.de)
- * @since  06.03.2016
+ * @since 06.03.2016
  */
 public interface CurrencyRespository extends CrudRepository<Currency, Long> {
-	
+
 	/**
 	 * Finds a list of currency by using the given code. Ideally, only one currency should exist for the given code.
 	 * 
-	 * @param code Currency code
-	 * s
+	 * @param code Currency codes
+	 * 
 	 * @return {@code Page<Currency>}
 	 */
 	List<Currency> findByCode(String code);

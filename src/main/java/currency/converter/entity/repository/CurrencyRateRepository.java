@@ -10,10 +10,10 @@ import currency.converter.entity.CurrencyRate;
  * CurrencyRateRepository with CRUD operations on CurrencyRate entity
  * 
  * @author Ziaul Chowdhury (ziaul.chowdhury@tu-dortmund.de)
- * @since  06.03.2016
+ * @since 06.03.2016
  */
 public interface CurrencyRateRepository extends CrudRepository<CurrencyRate, Long> {
-	
+
 	/**
 	 * Finds a list of currency rates for the given historyId
 	 * 
