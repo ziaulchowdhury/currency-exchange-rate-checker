@@ -8,14 +8,14 @@ package currency.converter.openexchangerate;
  */
 public class InvalidParameterException extends Exception {
 
-	private static final long serialVersionUID = 1904741860179449092L;
+    private static final long serialVersionUID = 1904741860179449092L;
 
-	@SuppressWarnings("unused")
-	private InvalidParameterException() {
-		// exception must have a message
-	};
+    @SuppressWarnings("unused")
+    private InvalidParameterException() {
+        // exception must have a message
+    };
 
-	public InvalidParameterException(String message) {
-		super(message);
-	}
+    public InvalidParameterException(String message) {
+        super(message);
+    }
 }

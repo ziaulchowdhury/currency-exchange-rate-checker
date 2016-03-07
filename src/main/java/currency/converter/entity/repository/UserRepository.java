@@ -14,11 +14,11 @@ import currency.converter.entity.User;
  */
 public interface UserRepository extends CrudRepository<User, String> {
 
-	/**
-	 * Finds a list of users for the given Email address.
-	 * 
-	 * @param email Email address of the user s
-	 * @return {@code Page<User>}
-	 */
-	List<User> findByEmail(String email);
+    /**
+     * Finds a list of users for the given Email address.
+     * 
+     * @param email Email address of the user s
+     * @return {@code Page<User>}
+     */
+    List<User> findByEmail(String email);
 }

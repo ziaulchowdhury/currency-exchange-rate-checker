@@ -27,64 +27,65 @@ import currency.converter.registration.UserExistException;
 @RequestMapping("/register*")
 public class RegistrationController extends ControllerCache {
 
-	@Autowired
-	private RegistrationService registrationService;
+    @Autowired
+    private RegistrationService registrationService;
 
-	private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
+    private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
-	/**
-	 * Initializes register page
-	 * 
-	 * @param model UI model
-	 * 
-	 * @return register view
-	 */
-	@RequestMapping(method = RequestMethod.GET)
-	public String showRegistrationForm(Model model) {
+    /**
+     * Initializes register page
+     * 
+     * @param model UI model
+     * 
+     * @return register view
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    public String showRegistrationForm(Model model) {
 
-		User user = new User();
-		model.addAttribute("user", user);
+        User user = new User();
+        model.addAttribute("user", user);
 
-		model.addAttribute("countries", getCountries());
+        model.addAttribute("countries", getCountries());
 
-		return "register";
-	}
+        return "register";
+    }
 
-	/**
-	 * Makes registration of new user when there is no validation error and there is no existing username.
-	 * 
-	 * @param model UI model
-	 * @param user {@link User} model with all form inputs
-	 * @param bindingResult Binding result for validation
-	 * @param request {@link HttpServletRequest}
-	 * @param response {@link HttpServletResponse}
-	 * 
-	 * @return register view
-	 */
-	@RequestMapping(method = RequestMethod.POST)
-	public String registerUser(Model model, @Valid User user, BindingResult bindingResult, HttpServletRequest request,
-			HttpServletResponse response) {
+    /**
+     * Makes registration of new user when there is no validation error and
+     * there is no existing username.
+     * 
+     * @param model UI model
+     * @param user {@link User} model with all form inputs
+     * @param bindingResult Binding result for validation
+     * @param request {@link HttpServletRequest}
+     * @param response {@link HttpServletResponse}
+     * 
+     * @return register view
+     */
+    @RequestMapping(method = RequestMethod.POST)
+    public String registerUser(Model model, @Valid User user, BindingResult bindingResult, HttpServletRequest request,
+            HttpServletResponse response) {
 
-		model.addAttribute("countries", getCountries());
+        model.addAttribute("countries", getCountries());
 
-		if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
 
-			model.addAttribute("user", user);
-			return "register";
-		}
+            model.addAttribute("user", user);
+            return "register";
+        }
 
-		try {
-			User savedUser = registrationService.createUser(user);
-			logger.info("User created : " + savedUser.toString());
+        try {
+            User savedUser = registrationService.createUser(user);
+            logger.info("User created : " + savedUser.toString());
 
-			String successMessage = "User '" + savedUser.getUsername()
-					+ "' got created successfully. Please click on the login link to access the system.";
-			model.addAttribute("success", successMessage);
+            String successMessage = "User '" + savedUser.getUsername()
+                    + "' got created successfully. Please click on the login link to access the system.";
+            model.addAttribute("success", successMessage);
 
-		} catch (UserExistException uee) {
-			model.addAttribute("registrationError", uee.getMessage());
-		}
+        } catch (UserExistException uee) {
+            model.addAttribute("registrationError", uee.getMessage());
+        }
 
-		return "register";
-	}
+        return "register";
+    }
 }

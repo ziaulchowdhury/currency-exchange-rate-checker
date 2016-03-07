@@ -8,28 +8,28 @@ package currency.converter.controller.model;
  */
 public class RateModel {
 
-	private String currencyCode;
+    private String currencyCode;
 
-	private double amount;
+    private double amount;
 
-	public RateModel(String currencyCode, double amount) {
-		this.currencyCode = currencyCode;
-		this.amount = amount;
-	}
+    public RateModel(String currencyCode, double amount) {
+        this.currencyCode = currencyCode;
+        this.amount = amount;
+    }
 
-	public String getCurrencyCode() {
-		return currencyCode;
-	}
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
 
-	public void setCurrencyCode(String currencyCode) {
-		this.currencyCode = currencyCode;
-	}
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
 
-	public double getAmount() {
-		return amount;
-	}
+    public double getAmount() {
+        return amount;
+    }
 
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
 }

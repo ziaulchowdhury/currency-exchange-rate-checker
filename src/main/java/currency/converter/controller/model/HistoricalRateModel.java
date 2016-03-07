@@ -17,46 +17,46 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
  */
 public class HistoricalRateModel {
 
-	@DateTimeFormat(iso = ISO.DATE, pattern = "yyyy-MM-dd")
-	private LocalDate dateOfRate;
+    @DateTimeFormat(iso = ISO.DATE, pattern = "yyyy-MM-dd")
+    private LocalDate dateOfRate;
 
-	@Min(value = 1)
-	protected double historicalAmount;
+    @Min(value = 1)
+    protected double historicalAmount;
 
-	@NotBlank
-	@Size(min = 1)
-	protected String historicalCurrency;
+    @NotBlank
+    @Size(min = 1)
+    protected String historicalCurrency;
 
-	public HistoricalRateModel() {
-	}
+    public HistoricalRateModel() {
+    }
 
-	public LocalDate getDateOfRate() {
-		return dateOfRate;
-	}
+    public LocalDate getDateOfRate() {
+        return dateOfRate;
+    }
 
-	public void setDateOfRate(LocalDate dateOfRate) {
-		this.dateOfRate = dateOfRate;
-	}
+    public void setDateOfRate(LocalDate dateOfRate) {
+        this.dateOfRate = dateOfRate;
+    }
 
-	public double getHistoricalAmount() {
-		return historicalAmount;
-	}
+    public double getHistoricalAmount() {
+        return historicalAmount;
+    }
 
-	public void setHistoricalAmount(double historicalAmount) {
-		this.historicalAmount = historicalAmount;
-	}
+    public void setHistoricalAmount(double historicalAmount) {
+        this.historicalAmount = historicalAmount;
+    }
 
-	public String getHistoricalCurrency() {
-		return historicalCurrency;
-	}
+    public String getHistoricalCurrency() {
+        return historicalCurrency;
+    }
 
-	public void setHistoricalCurrency(String historicalCurrency) {
-		this.historicalCurrency = historicalCurrency;
-	}
+    public void setHistoricalCurrency(String historicalCurrency) {
+        this.historicalCurrency = historicalCurrency;
+    }
 
-	@Override
-	public String toString() {
-		return "HistoricalRateModel [dateOfRate=" + dateOfRate + ", historicalAmount=" + historicalAmount
-				+ ", historicalCurrency=" + historicalCurrency + "]";
-	}
+    @Override
+    public String toString() {
+        return "HistoricalRateModel [dateOfRate=" + dateOfRate + ", historicalAmount=" + historicalAmount
+                + ", historicalCurrency=" + historicalCurrency + "]";
+    }
 }

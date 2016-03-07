@@ -13,28 +13,28 @@ import currency.converter.entity.CurrencyRate;
  */
 public class ExchangeHistoryModel {
 
-	private CurrencyHistory history;
+    private CurrencyHistory history;
 
-	private List<CurrencyRate> historyRates;
+    private List<CurrencyRate> historyRates;
 
-	public ExchangeHistoryModel(CurrencyHistory history, List<CurrencyRate> historyRates) {
-		this.history = history;
-		this.historyRates = historyRates;
-	}
+    public ExchangeHistoryModel(CurrencyHistory history, List<CurrencyRate> historyRates) {
+        this.history = history;
+        this.historyRates = historyRates;
+    }
 
-	public CurrencyHistory getHistory() {
-		return history;
-	}
+    public CurrencyHistory getHistory() {
+        return history;
+    }
 
-	public void setHistory(CurrencyHistory history) {
-		this.history = history;
-	}
+    public void setHistory(CurrencyHistory history) {
+        this.history = history;
+    }
 
-	public List<CurrencyRate> getHistoryRates() {
-		return historyRates;
-	}
+    public List<CurrencyRate> getHistoryRates() {
+        return historyRates;
+    }
 
-	public void setHistoryRates(List<CurrencyRate> historyRates) {
-		this.historyRates = historyRates;
-	}
+    public void setHistoryRates(List<CurrencyRate> historyRates) {
+        this.historyRates = historyRates;
+    }
 }

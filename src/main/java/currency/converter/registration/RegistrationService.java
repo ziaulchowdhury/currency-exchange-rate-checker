@@ -18,35 +18,34 @@ import currency.converter.entity.repository.UserRepository;
 @Component
 public class RegistrationService {
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	@Autowired
-	private UserAuthorityRepository userAuthorityRespository;
+    @Autowired
+    private UserAuthorityRepository userAuthorityRespository;
 
-	/**
-	 * Creates a new user when username does not exist in the system.
-	 * 
-	 * @param user User to be created
-	 * 
-	 * @return Saved {@link User}
-	 * 
-	 * @throws UserExistException
-	 *             when username exists
-	 */
-	public User createUser(User user) throws UserExistException {
+    /**
+     * Creates a new user when username does not exist in the system.
+     * 
+     * @param user User to be created
+     * 
+     * @return Saved {@link User}
+     * 
+     * @throws UserExistException when username exists
+     */
+    public User createUser(User user) throws UserExistException {
 
-		// check if user exists
-		if (userRepository.findOne(user.getUsername()) != null) {
-			throw new UserExistException(user.getUsername() + " exists in the system. Please choose another username!");
-		}
+        // check if user exists
+        if (userRepository.findOne(user.getUsername()) != null) {
+            throw new UserExistException(user.getUsername() + " exists in the system. Please choose another username!");
+        }
 
-		// Create the user
-		user.setEnable(true);
-		User savedUser = userRepository.save(user);
+        // Create the user
+        user.setEnable(true);
+        User savedUser = userRepository.save(user);
 
-		userAuthorityRespository.save(new UserAuthority(savedUser.getUsername(), UserRole.ROLE_USER.name()));
+        userAuthorityRespository.save(new UserAuthority(savedUser.getUsername(), UserRole.ROLE_USER.name()));
 
-		return savedUser;
-	}
+        return savedUser;
+    }
 }

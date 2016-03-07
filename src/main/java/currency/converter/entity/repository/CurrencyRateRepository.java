@@ -14,12 +14,12 @@ import currency.converter.entity.CurrencyRate;
  */
 public interface CurrencyRateRepository extends CrudRepository<CurrencyRate, Long> {
 
-	/**
-	 * Finds a list of currency rates for the given historyId
-	 * 
-	 * @param historyId Currency history id
-	 * 
-	 * @return {@code Page<CurrencyHistory>}
-	 */
-	List<CurrencyRate> findByHistoryId(long historyId);
+    /**
+     * Finds a list of currency rates for the given historyId
+     * 
+     * @param historyId Currency history id
+     * 
+     * @return {@code Page<CurrencyHistory>}
+     */
+    List<CurrencyRate> findByHistoryId(long historyId);
 }

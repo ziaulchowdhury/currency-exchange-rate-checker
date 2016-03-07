@@ -14,12 +14,12 @@ import currency.converter.entity.UserAuthority;
  */
 public interface UserAuthorityRepository extends CrudRepository<UserAuthority, Long> {
 
-	/**
-	 * Finds a list of authorities of the given user name.
-	 * 
-	 * @param username Username of the user
-	 * 
-	 * @return {@code Page<UserAuthority>}
-	 */
-	List<UserAuthority> findByUsername(String username);
+    /**
+     * Finds a list of authorities of the given user name.
+     * 
+     * @param username Username of the user
+     * 
+     * @return {@code Page<UserAuthority>}
+     */
+    List<UserAuthority> findByUsername(String username);
 }

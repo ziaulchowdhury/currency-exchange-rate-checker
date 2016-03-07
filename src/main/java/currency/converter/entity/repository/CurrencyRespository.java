@@ -14,12 +14,12 @@ import currency.converter.entity.Currency;
  */
 public interface CurrencyRespository extends CrudRepository<Currency, Long> {
 
-	/**
-	 * Finds a list of currency by using the given code. Ideally, only one currency should exist for the given code.
-	 * 
-	 * @param code Currency codes
-	 * 
-	 * @return {@code Page<Currency>}
-	 */
-	List<Currency> findByCode(String code);
+    /**
+     * Finds a list of currency by using the given code. Ideally, only one currency should exist for the given code.
+     * 
+     * @param code Currency codes
+     * 
+     * @return {@code Page<Currency>}
+     */
+    List<Currency> findByCode(String code);
 }

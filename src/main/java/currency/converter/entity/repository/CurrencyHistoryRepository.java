@@ -14,13 +14,13 @@ import currency.converter.entity.CurrencyHistory;
  */
 public interface CurrencyHistoryRepository extends PagingAndSortingRepository<CurrencyHistory, Long> {
 
-	/**
-	 * Finds a list of exchange histories based on the given page
-	 * 
-	 * @param userName User name
-	 * @param page Contains limit and sorting options
-	 * 
-	 * @return {@code Page<CurrencyHistory>}
-	 */
-	Page<CurrencyHistory> findByUserName(String userName, Pageable page);
+    /**
+     * Finds a list of exchange histories based on the given page
+     * 
+     * @param userName User name
+     * @param page Contains limit and sorting options
+     * 
+     * @return {@code Page<CurrencyHistory>}
+     */
+    Page<CurrencyHistory> findByUserName(String userName, Pageable page);
 }

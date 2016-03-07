@@ -8,27 +8,27 @@ package currency.converter.registration;
  */
 public enum SupportedCurrencies {
 
-	AUD("Australian Dollar"),
+    AUD("Australian Dollar"),
 
-	EUR("Euro"),
+    EUR("Euro"),
 
-	GBP("British Pound Sterling"),
+    GBP("British Pound Sterling"),
 
-	HUF("Hungarian Forint"),
+    HUF("Hungarian Forint"),
 
-	JPY("Japanese Yen"),
+    JPY("Japanese Yen"),
 
-	NZD("New Zealand Dollar"),
+    NZD("New Zealand Dollar"),
 
-	USD("United States Dollar");
+    USD("United States Dollar");
 
-	private SupportedCurrencies(String name) {
-		this.name = name;
-	}
+    private SupportedCurrencies(String name) {
+        this.name = name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	private String name;
+    private String name;
 }

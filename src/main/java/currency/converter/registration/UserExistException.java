@@ -8,14 +8,14 @@ package currency.converter.registration;
  */
 public class UserExistException extends Exception {
 
-	private static final long serialVersionUID = 5215518033826176259L;
+    private static final long serialVersionUID = 5215518033826176259L;
 
-	@SuppressWarnings("unused")
-	private UserExistException() {
-		// default constructor not allowed!
-	}
+    @SuppressWarnings("unused")
+    private UserExistException() {
+        // default constructor not allowed!
+    }
 
-	public UserExistException(String message) {
-		super(message);
-	}
+    public UserExistException(String message) {
+        super(message);
+    }
 }

@@ -26,44 +26,44 @@ import currency.converter.login.UserService;
 @RequestMapping("/admin")
 public class AdminController {
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	@Autowired
-	private UserAuthorityRepository userAuthorityRespository;
+    @Autowired
+    private UserAuthorityRepository userAuthorityRespository;
 
-	@Autowired
-	private CurrencyRespository currencyRepository;
+    @Autowired
+    private CurrencyRespository currencyRepository;
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+    private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
-	/**
-	 * Displays all persisted users, authorities and currencies.
-	 * 
-	 * @param model UI model
-	 * @return showUsers view
-	 */
-	@RequestMapping(method = RequestMethod.GET)
-	public String showUsers(Model model) {
+    /**
+     * Displays all persisted users, authorities and currencies.
+     * 
+     * @param model UI model
+     * @return showUsers view
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    public String showUsers(Model model) {
 
-		logger.info("Admin page is accessed by : " + userService.getLoggedInUserName());
+        logger.info("Admin page is accessed by : " + userService.getLoggedInUserName());
 
-		if (!userService.hasAdminRole()) {
-			return "redirect:userhome";
-		}
+        if (!userService.hasAdminRole()) {
+            return "redirect:userhome";
+        }
 
-		Iterable<User> users = userRepository.findAll();
-		model.addAttribute("users", users);
+        Iterable<User> users = userRepository.findAll();
+        model.addAttribute("users", users);
 
-		Iterable<Currency> currencies = currencyRepository.findAll();
-		model.addAttribute("currencies", currencies);
+        Iterable<Currency> currencies = currencyRepository.findAll();
+        model.addAttribute("currencies", currencies);
 
-		Iterable<UserAuthority> authorities = userAuthorityRespository.findAll();
-		model.addAttribute("authorities", authorities);
+        Iterable<UserAuthority> authorities = userAuthorityRespository.findAll();
+        model.addAttribute("authorities", authorities);
 
-		return "showUsers";
-	}
+        return "showUsers";
+    }
 }
