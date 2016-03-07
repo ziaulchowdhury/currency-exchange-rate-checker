@@ -1,10 +1,10 @@
 .classpath
 .project
 .gradle
+settings.gradle
 .settings
 bin
 /build
 build
 lib/
-*.jar
 target
