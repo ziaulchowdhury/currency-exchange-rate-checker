@@ -16,27 +16,28 @@ import org.hibernate.validator.constraints.NotEmpty;
  * UserAuthority JPA entity
  * 
  * @author Ziaul Chowdhury (ziaul.chowdhury@tu-dortmund.de)
- * @since  06.03.2016
+ * @since 06.03.2016
  */
 @Entity
-@Table(name="authorities")
+@Table(name = "authorities")
 public class UserAuthority {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+
 	private String username;
-	
+
 	@NotEmpty(message = "Authority is required!")
 	private String authority;
-	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name = "username", referencedColumnName= "username", insertable = false, updatable = false)
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "username", referencedColumnName = "username", insertable = false, updatable = false)
 	private User user;
-	
-	protected UserAuthority() { }
-	
+
+	protected UserAuthority() {
+	}
+
 	public UserAuthority(String username, String authority) {
 		this.username = username;
 		this.authority = authority;

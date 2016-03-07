@@ -15,38 +15,39 @@ import javax.persistence.Table;
  * CurrencyRate JPA entity
  * 
  * @author Ziaul Chowdhury (ziaul.chowdhury@tu-dortmund.de)
- * @since  06.03.2016
+ * @since 06.03.2016
  */
 @Entity
-@Table(name="currency_rate")
+@Table(name = "currency_rate")
 public class CurrencyRate {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+
 	@Column(name = "history_id")
 	private long historyId;
-	
-	private long currency;
-	
-	private double rate;
-	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name = "history_id", referencedColumnName= "id", insertable = false, updatable = false)
-    private CurrencyHistory currencyHistory;
-	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name = "currency", referencedColumnName= "id", insertable = false, updatable = false)
-    private Currency currencyObj;
-    
-    protected CurrencyRate() { }
 
-    public CurrencyRate(long historyId, long currency, double rate) {
-        this.historyId = historyId;
-        this.currency = currency;
-        this.rate = rate;
-    }
+	private long currency;
+
+	private double rate;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "history_id", referencedColumnName = "id", insertable = false, updatable = false)
+	private CurrencyHistory currencyHistory;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "currency", referencedColumnName = "id", insertable = false, updatable = false)
+	private Currency currencyObj;
+
+	protected CurrencyRate() {
+	}
+
+	public CurrencyRate(long historyId, long currency, double rate) {
+		this.historyId = historyId;
+		this.currency = currency;
+		this.rate = rate;
+	}
 
 	public long getHistoryId() {
 		return historyId;
@@ -79,7 +80,7 @@ public class CurrencyRate {
 	public CurrencyHistory getCurrencyHistory() {
 		return currencyHistory;
 	}
-	
+
 	public void setCurrencyHistory(CurrencyHistory currencyHistory) {
 		this.currencyHistory = currencyHistory;
 	}

@@ -14,28 +14,29 @@ import javax.persistence.Table;
  * Country JPA entity
  * 
  * @author Ziaul Chowdhury (ziaul.chowdhury@tu-dortmund.de)
- * @since  06.03.2016
+ * @since 06.03.2016
  */
 @Entity
-@Table(name="country")
+@Table(name = "country")
 public class Country {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+
 	private String name;
-	
+
 	private long currency;
-	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name = "currency", referencedColumnName= "id", insertable = false, updatable = false)
-    private Currency currencyObj;
-	
-	protected Country() { }
-	
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "currency", referencedColumnName = "id", insertable = false, updatable = false)
+	private Currency currencyObj;
+
+	protected Country() {
+	}
+
 	public Country(String name, long currency) {
-		this.name= name;
+		this.name = name;
 		this.currency = currency;
 	}
 
@@ -58,7 +59,7 @@ public class Country {
 	public long getId() {
 		return id;
 	}
-	
+
 	public Currency getCurrencyObj() {
 		return currencyObj;
 	}

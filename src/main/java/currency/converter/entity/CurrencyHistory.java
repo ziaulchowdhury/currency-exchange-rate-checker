@@ -17,43 +17,44 @@ import javax.persistence.Table;
  * CurrencyHistory JPA entity
  * 
  * @author Ziaul Chowdhury (ziaul.chowdhury@tu-dortmund.de)
- * @since  06.03.2016
+ * @since 06.03.2016
  */
 @Entity
-@Table(name="currency_history")
+@Table(name = "currency_history")
 public class CurrencyHistory {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+
 	@Column(name = "source_currency")
 	private long sourceCurrency;
-    
-    private double amount;
-    
-    @Column(name = "rate_date")
-    private Date rateDate;
-    
-    @Column(name = "username")
+
+	private double amount;
+
+	@Column(name = "rate_date")
+	private Date rateDate;
+
+	@Column(name = "username")
 	private String userName;
-    
-    @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name = "source_currency", referencedColumnName="id", insertable = false, updatable = false)
-    private Currency currency;
-    
-    @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name = "username", referencedColumnName="username", insertable = false, updatable = false)
-    private User user;
 
-    protected CurrencyHistory() { }
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "source_currency", referencedColumnName = "id", insertable = false, updatable = false)
+	private Currency currency;
 
-    public CurrencyHistory(long sourceCurrency, double amount, Date rateDate, String userName) {
-        this.sourceCurrency = sourceCurrency;
-        this.amount = amount;
-        this.rateDate = rateDate;
-        this.userName = userName;
-    }
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "username", referencedColumnName = "username", insertable = false, updatable = false)
+	private User user;
+
+	protected CurrencyHistory() {
+	}
+
+	public CurrencyHistory(long sourceCurrency, double amount, Date rateDate, String userName) {
+		this.sourceCurrency = sourceCurrency;
+		this.amount = amount;
+		this.rateDate = rateDate;
+		this.userName = userName;
+	}
 
 	public long getId() {
 		return id;
@@ -86,7 +87,7 @@ public class CurrencyHistory {
 	public void setRateDate(Date rateDate) {
 		this.rateDate = rateDate;
 	}
-	
+
 	public String getUserName() {
 		return userName;
 	}

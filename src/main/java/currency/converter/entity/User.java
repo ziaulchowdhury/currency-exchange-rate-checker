@@ -19,47 +19,48 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
  * User JPA entity
  * 
  * @author Ziaul Chowdhury (ziaul.chowdhury@tu-dortmund.de)
- * @since  06.03.2016
+ * @since 06.03.2016
  */
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
-	
+
 	@Id
 	@NotEmpty(message = "Username is required.")
 	private String username;
-	
+
 	@NotEmpty(message = "Name is required.")
 	private String name;
-	
+
 	@NotEmpty(message = "Password is required.")
 	private String password;
-	
+
 	@Email
 	@NotEmpty(message = "Email is required.")
 	private String email;
-	
+
 	@NotNull
-	@DateTimeFormat(iso = ISO.DATE, pattern="yyyy-MM-dd")
+	@DateTimeFormat(iso = ISO.DATE, pattern = "yyyy-MM-dd")
 	@Column(name = "date_of_birth")
-    private Date dateOfBirth;
-	
+	private Date dateOfBirth;
+
 	private String address;
-	
+
 	private String zip;
-	
+
 	private long country;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "country", referencedColumnName= "id", insertable = false, updatable = false)
-    private Country countryObj;
-	
+	@JoinColumn(name = "country", referencedColumnName = "id", insertable = false, updatable = false)
+	private Country countryObj;
+
 	private boolean enable;
-	
-	public User() { }
-	
-	public User(String name, String username, String password, String email, Date dateOfBirth, 
-			String address, String zip, long country, boolean enable) {
+
+	public User() {
+	}
+
+	public User(String name, String username, String password, String email, Date dateOfBirth, String address,
+			String zip, long country, boolean enable) {
 		this.name = name;
 		this.username = username;
 		this.password = password;
@@ -126,7 +127,7 @@ public class User {
 	public void setEnable(boolean enable) {
 		this.enable = enable;
 	}
-	
+
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}

@@ -10,26 +10,27 @@ import javax.persistence.Table;
  * Currency JPA entity
  * 
  * @author Ziaul Chowdhury (ziaul.chowdhury@tu-dortmund.de)
- * @since  06.03.2016
+ * @since 06.03.2016
  */
 @Entity
-@Table(name="currency")
+@Table(name = "currency")
 public class Currency {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-	
-	private String name;
-	
-	private String code;
-	
-	protected Currency() {}
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 
-    public Currency(String name, String code) {
-        this.name = name;
-        this.code = code;
-    }
+	private String name;
+
+	private String code;
+
+	protected Currency() {
+	}
+
+	public Currency(String name, String code) {
+		this.name = name;
+		this.code = code;
+	}
 
 	public String getName() {
 		return name;
