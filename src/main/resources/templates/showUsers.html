@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>Currency Exchange Rate Checker : User Home</title>
+	
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	
+	<style type="text/css">
+		body {
+		  padding-top: 50px;
+		  padding-bottom: 20px;
+		}
+	</style>
+	
+	<script>
+	  	$(function() {
+	    	$("#datepicker" ).datepicker({ dateFormat:"yy-mm-dd" });
+	  	});
+	</script>
+</head>
+
+<body>
+	
+	<!-- Top navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+		
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" th:href="@{/userhome}">Currency Exchange Rate Checker</a>
+        </div>
+		
+        <div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="#" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</a>
+				</li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')">
+					<a th:href="@{/admin}" th:inline="text">Admin</a>
+				</li>
+				<li>
+					<form th:action="@{/logout}" method="post" class="form-horizontal" role="form" style="padding-top:11px;">
+						<input type="submit" value="Logout" class="btn btn-default btn-sm" />
+					</form>
+				</li>
+			</ul>
+        </div>
+		
+      </div>
+    </nav>
+
+	<br/><br/>
+	
+    <!-- List of users -->
+	<div class="container">
+		<div class="container-fluid vcenter">
+			<div class="row">
+				
+				<!-- Latest currency exchange rate -->
+				<div class="col-sm-12">
+					
+					<h2>List of users</h2>
+					
+					<table class="table table-hover" th:if="${users != null}">
+						
+						<tr>
+							<th>Username</th>
+							<th>Name</th>
+							<th>Password</th>
+							<th>Date of Birth</th>
+							<th>Email</th>
+							<th>Address</th>
+							<th>ZIP</th>
+							<th>Country</th>
+						</tr>
+						
+						<tr th:each="user : ${users}">
+							<td th:text="${user.username}"></td>
+							<td th:text="${user.name}"></td>
+							<td th:text="${user.password}"></td>
+							<td th:text="${user.dateOfBirth}"></td>
+							<td th:text="${user.email}"></td>
+							<td th:text="${user.address}"></td>
+							<td th:text="${user.zip}"></td>
+							<td th:text="${user.countryObj.name}"></td>
+						</tr>
+						
+					</table>
+					
+					<table class="table table-hover" th:if="${users == null or users.size() == 0}">
+						<tr><td class="alert alert-success">No user exit yet!</td></tr>
+					</table>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- User Authorities -->
+	<div class="container">
+		<div class="container-fluid vcenter">
+			<div class="row">
+				
+				<div class="col-sm-12">
+					
+					<h2>List of User Authorities</h2>
+					
+					<table class="table table-hover" th:if="${authorities != null}">
+						
+						<tr>
+							<th>Username</th>
+							<th>Authority</th>
+						</tr>
+						
+						<tr th:each="userAuthority : ${authorities}">
+							<td th:text="${userAuthority.username}"></td>
+							<td th:text="${userAuthority.authority}"></td>
+						</tr>
+						
+					</table>
+					
+					<table class="table table-hover" th:if="${authorities == null or authorities.size() == 0}">
+						<tr><td class="alert alert-success">No user authority exit yet!</td></tr>
+					</table>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Currencies -->
+	<div class="container">
+		<div class="container-fluid vcenter">
+			<div class="row">
+				
+				<div class="col-sm-12">
+					
+					<h2>List of Currencies</h2>
+					
+					<table class="table table-hover" th:if="${currencies != null}">
+						
+						<tr>
+							<th>Name</th>
+							<th>Code</th>
+						</tr>
+						
+						<tr th:each="currency : ${currencies}">
+							<td th:text="${currency.name}"></td>
+							<td th:text="${currency.code}"></td>
+						</tr>
+						
+					</table>
+					
+					<table class="table table-hover" th:if="${currencies == null or currencies.size() == 0}">
+						<tr><td class="alert alert-success">No currency exit yet!</td></tr>
+					</table>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="jumbotron">
+		<div class="container">
+			<footer>
+				<p>© 2016 Ziaul Chowdhury</p>
+			</footer>
+		</div>
+	</div>
+	
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  
+</body>
+</html>
+

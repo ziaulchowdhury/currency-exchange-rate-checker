@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>Currency Exchange Rate Checker : User Home</title>
+	
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	
+	<style type="text/css">
+		body {
+		  padding-top: 50px;
+		  padding-bottom: 20px;
+		}
+	</style>
+	
+	<script>
+	  	$(function() {
+	    	$("#datepicker" ).datepicker({ dateFormat:"yy-mm-dd" });
+	  	});
+	</script>
+</head>
+
+<body>
+	
+	<!-- Top navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+		
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" th:href="@{/userhome}">Currency Exchange Rate Checker</a>
+        </div>
+		
+        <div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="#" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</a>
+				</li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')">
+					<a th:href="@{/admin}" th:inline="text">Admin</a>
+				</li>
+				<li>
+					<form th:action="@{/logout}" method="post" class="form-horizontal" role="form" style="padding-top:11px;">
+						<input type="submit" value="Logout" class="btn btn-default btn-sm" />
+					</form>
+				</li>
+			</ul>
+        </div>
+		
+      </div>
+    </nav>
+
+	<br/><br/>
+	
+    <!-- Search latest & historical exchange rates -->
+    <div class="container">
+		<div class="container-fluid vcenter">
+			<div class="row">
+				
+				<!-- Latest currency exchange rate -->
+				<div class="col-sm-6">
+					<div class="panel panel-default">
+					
+						<div class="panel-heading">
+							<strong class="">Latest Exchange Rates</strong>
+						</div>
+						
+						<div class="panel-body">
+							
+							<form action="#" th:action="@{/userhome/currency/latest}" th:object="${latestRateModel}" method="post" class="form-horizontal" role="form">
+								
+								<div class="form-group">
+									<label for="amount" class="col-sm-3 control-label">Amount</label>
+									<div class="col-sm-9">
+										<input type="text" th:field="*{amount}" class="form-control" placeholder="Amount" required="" />
+										<div th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}">Amount Error</div>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="baseCurrency" class="col-sm-3 control-label">Currency</label>
+									<div class="col-sm-9">
+										<select th:field="*{baseCurrency}">
+											<option th:each="curr : ${currencies}" th:value="${curr.code}" th:text="${curr.name}">Currency</option>
+										</select>
+										<div th:if="${#fields.hasErrors('baseCurrency')}" th:errors="*{baseCurrency}">Currency Error</div>
+									</div>
+								</div>
+								
+								<div class="form-group last">
+									<div class="col-sm-offset-3 col-sm-9">
+										<input name="submit" type="submit" value="Search" class="btn btn-primary btn-sm" />
+										<button type="reset" class="btn btn-default btn-sm">Reset</button>
+									</div>
+								</div>
+								
+							</form>
+							
+							<!-- Search result -->
+							<table class="table table-hover" th:if="${latestCurrencyRateModels != null}">
+								<tr>
+									<th>Currency</th>
+									<th>Amount</th>
+								</tr>
+								
+								<tr th:each="rateModel : ${latestCurrencyRateModels}">
+									<td th:text="${rateModel.currencyCode}"></td>
+									<td th:text="${rateModel.amount}"></td>
+								</tr>
+								
+							</table>
+							
+							<!-- Error -->
+							<div class="alert alert-success" role="alert" th:if="${conversionError != null}" th:text="${conversionError}">Latest exchange error!</div>
+							
+						</div>
+						
+					</div>
+				</div>
+				
+				<!-- Historical currency exchange rate -->
+				<div class="col-sm-6">
+					<div class="panel panel-default">
+					
+						<div class="panel-heading">
+							<strong class="">Historical Exchange Rates</strong>
+						</div>
+						
+						<div class="panel-body">
+							
+							<form action="#" th:action="@{/userhome/currency/historical}" th:object="${historicalRateModel}" method="post" class="form-horizontal" role="form">
+								
+								<div class="form-group">
+									<label for="historicalAmount" class="col-sm-3 control-label">Amount</label>
+									<div class="col-sm-9">
+										<input type="text" th:field="*{historicalAmount}" class="form-control" placeholder="Amount" required="" />
+										<div th:if="${#fields.hasErrors('historicalAmount')}" th:errors="*{historicalAmount}">Amount Error</div>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="historicalCurrency" class="col-sm-3 control-label">Currency</label>
+									<div class="col-sm-9">
+										<select th:field="*{historicalCurrency}">
+											<option th:each="curr : ${currencies}" th:value="${curr.code}" th:text="${curr.name}">Currency</option>
+										</select>
+										<div th:if="${#fields.hasErrors('historicalCurrency')}" th:errors="*{historicalCurrency}">Currency Error</div>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="dateOfRate" class="col-sm-3 control-label">Date</label>
+									<div class="col-sm-9">
+										<input type="text" id="datepicker" th:field="*{dateOfRate}" class="form-control" placeholder="Date" required="" />
+										<div th:if="${#fields.hasErrors('dateOfRate')}" th:errors="*{dateOfRate}">Date Error</div>
+									</div>
+								</div>
+								
+								<div class="form-group last">
+									<div class="col-sm-offset-3 col-sm-9">
+										<input name="submit" type="submit" value="Search" class="btn btn-primary btn-sm" />
+										<button type="reset" class="btn btn-default btn-sm">Reset</button>
+									</div>
+								</div>
+								
+							</form>
+							
+							<!-- Search result -->
+							<table class="table table-hover" th:if="${historicalCurrencyResult != null}">
+								<tr>
+									<th>Currency</th>
+									<th>Amount</th>
+								</tr>
+								
+								<tr th:each="hisRateModel : ${historicalCurrencyResult}">
+									<td th:text="${hisRateModel.currencyCode}"></td>
+									<td th:text="${hisRateModel.amount}"></td>
+								</tr>
+								
+							</table>
+							
+							<!-- Error -->
+							<div th:if="${conversionErrorHistorical != null}" th:text="${conversionErrorHistorical}" class="alert alert-success" role="alert">Historical exchange error!</div>
+							
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+	</div>
+	
+	<!-- Last 10 search results -->
+	<div class="container">
+		<div class="container-fluid vcenter">
+			<div class="row">
+				
+				<!-- Latest currency exchange rate -->
+				<div class="col-sm-12">
+					
+					<h2>Exchange rate history</h2>
+					
+					<table class="table table-hover" th:if="${historyModels != null}">
+						
+						<tr th:each="historyModel : ${historyModels}">
+							
+							<td>
+								<table class="table table-bordered">
+									<tr>
+										<td>Search Date </td>
+										<td th:text="${historyModel.history.rateDate}"></td>
+									</tr>
+									<tr>
+										<td>Search Amount </td>
+										<td th:text="${historyModel.history.amount}"></td>
+									</tr>
+									<tr>
+										<td>Search Currency Code</td>
+										<td th:if="${historyModel.history.currency != null}" th:text="${historyModel.history.currency.code}"></td>
+									</tr>
+								</table>
+							</td>
+						   	<td>
+						   		<table class="table table-bordered">
+						   			<tr>
+						   				<th>Amount</th>
+						   				<th>Currency</th>
+						   			</tr>
+									<tr th:each="rate : ${historyModel.historyRates}">
+										<td th:text="${rate.rate}"></td>
+										<td th:if="${rate.currencyObj != null}" th:text="${rate.currencyObj.code}"></td>
+									</tr>
+								</table>
+						   	</td>
+						   
+						</tr>
+					</table>
+					
+					<table class="table table-hover" th:if="${historyModels == null or historyModels.size() == 0}">
+						<tr><td class="alert alert-success">No search result available for the user yet!</td></tr>
+					</table>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="jumbotron">
+		<div class="container">
+			<footer>
+				<p>© 2016 Ziaul Chowdhury</p>
+			</footer>
+		</div>
+	</div>
+	
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  
+</body>
+</html>
+
