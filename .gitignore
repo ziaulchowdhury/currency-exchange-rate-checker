@@ -1,0 +1,10 @@
+.classpath
+.project
+.gradle
+.settings
+bin
+/build
+build
+lib/
+*.jar
+target
