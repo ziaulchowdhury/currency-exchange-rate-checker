@@ -6,10 +6,12 @@ apply plugin: 'application'
 
 buildscript {
     repositories {
-        jcenter()
+		maven {
+            url "https://jcenter.bintray.com"
+        }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.1.RELEASE")
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.1.RELEASE")
     }
 }
 
@@ -21,7 +23,9 @@ jar {
 }
 
 repositories {
-    jcenter()
+	maven {
+		url "https://jcenter.bintray.com"
+	}
 }
 
 sourceCompatibility = 1.8
@@ -44,4 +48,7 @@ dependencies {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
+}
+
+task stage(type: Copy, dependsOn: [clean, build]) {
 }
