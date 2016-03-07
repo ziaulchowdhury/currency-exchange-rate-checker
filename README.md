@@ -29,13 +29,13 @@ Development system must have Jdk 8 & Git installed.
 
 In order to check out the project and build it locally, please follow the steps below:
 
-  git clone https://github.com/ziaulchowdhury/currency-exchange-rate-checker.git
-  cd currency-exchange-rate-checker
-  ./gradlew build
+    git clone https://github.com/ziaulchowdhury/currency-exchange-rate-checker.git
+    cd currency-exchange-rate-checker
+    ./gradlew build
   
 The following command will run the Spring Boot application:
 
-  ./gradlew run
+    ./gradlew run
 
 # Configuration
 In order to use API of [openexchangerates](https://openexchangerates.org), API key is required. 
